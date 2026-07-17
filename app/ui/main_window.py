@@ -1,3 +1,5 @@
+from app.ui.input_bar import InputBar
+from app.ui.chat_area import ChatArea
 import customtkinter as ctk
 
 
@@ -13,6 +15,7 @@ class MainWindow:
             text="ai_Desk",
             font=("Swegoe UI",32,"bold")
         )
+        title.pack(pady=(30,10))
 
         # Subtitle
         subtitle = ctk.CTkLabel(
@@ -29,3 +32,20 @@ class MainWindow:
             font=("Segoe UI",16)
         )
         welcome.pack(pady=(20,30))
+
+        # Chat Area
+        chat_area = ChatArea(self.root)
+        chat_area.get_widget().pack(
+            fill="both",
+            expand=True,
+            padx=20,
+            pady=20
+        )
+
+        # Input Bar
+        self.input_bar = InputBar(self.root)
+        self.input_bar.get_widget().pack(
+            fill="x",
+            padx=20,
+            pady=(0,20)
+        )
