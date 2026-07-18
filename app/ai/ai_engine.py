@@ -31,7 +31,8 @@ class AIEngine:
         if message in ["who are you", "about yourself"]:
             return "identity"
         
-        if message.startswith("open"):
+
+        if "open" in message:
             return "system"
 
         return "unknown"
