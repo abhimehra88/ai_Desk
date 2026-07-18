@@ -2,6 +2,8 @@ import customtkinter as ctk
 
 from app.ui.chat_area import ChatArea
 from app.ui.input_bar import InputBar
+from app.ui.components.header import Header
+from app.system.message_manager import MessageManager
 
 
 class MainWindow:
@@ -29,30 +31,13 @@ class MainWindow:
             pady=20
         )
 
+
     def create_header(self):
-        self.title_label = ctk.CTkLabel(
-            self.main_container,
-            text="ai_Desk",
-            font=("Segoe UI", 32, "bold")
-        )
-        self.title_label.pack(pady=(30, 10))
-
-        self.subtitle_label = ctk.CTkLabel(
-            self.main_container,
-            text="Your Intelligent Desktop",
-            font=("Segoe UI", 16)
-        )
-        self.subtitle_label.pack()
-
-        self.welcome_label = ctk.CTkLabel(
-            self.main_container,
-            text="What can I do for you today?",
-            font=("Segoe UI", 16)
-        )
-        self.welcome_label.pack(pady=(20, 30))
+        self.header = Header(self.main_container)
 
     def create_chat_area(self):
         self.chat_area = ChatArea(self.main_container)
+        print("MainWindow ChatArea ID:", id(self.chat_area))
 
         self.chat_area.get_widget().pack(
             fill="both",
@@ -62,10 +47,16 @@ class MainWindow:
         )
 
     def create_input_bar(self):
+
+        self.message_manager = MessageManager(self.chat_area)
+        
         self.input_bar = InputBar(self.main_container)
+
+        self.input_bar.set_message_manager(self.message_manager)
 
         self.input_bar.get_widget().pack(
             fill="x",
             padx=20,
             pady=(0, 20)
         )
+

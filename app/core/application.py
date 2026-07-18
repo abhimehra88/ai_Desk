@@ -12,7 +12,7 @@ class Application:
         # Create main window
         self.root = ctk.CTk()
         self.root.title("ai_Desk")
-        self.root.configure(fg_color_="red")
+        self.root.configure(fg_color="red")
         self.root.geometry("1200x700")
         
         MainWindow(self.root)

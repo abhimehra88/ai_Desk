@@ -2,32 +2,83 @@ import customtkinter as ctk
 
 
 class InputBar:
-    def __init__ (self,parent):
-        self.frame = ctk.CTkFrame(parent)
+
+    def __init__(self, parent):
+        self.parent = parent
+        self.widget = self.create()
+
+    def create(self):
+        frame = ctk.CTkFrame(
+            self.parent,
+            height=70,
+            corner_radius=12
+        )
+
+        frame.pack_propagate(False)
 
         self.entry = ctk.CTkEntry(
-            self.frame,
-            placeholder_text="Type your message.."
-        )
-        
-        self.send_button = ctk.CTkButton(
-            self.frame,
-            text="Send"
+            frame,
+            placeholder_text="Type your message...",
+            height=40
         )
 
         self.entry.pack(
             side="left",
             fill="x",
             expand=True,
-            padx=(10,5),
-            pady=10
+            padx=(15, 10),
+            pady=15
+        )
+
+        self.voice_button = ctk.CTkButton(
+            frame,
+            text="🎤",
+            width=50,
+            height=40,
+            command=self.send_message
+        )
+
+        self.voice_button.pack(
+            side="left",
+            padx=(0, 10)
+        )
+
+        self.send_button = ctk.CTkButton(
+            frame,
+            text="Send",
+            command=self.send_message,
+            width=80,
+            height=40
         )
 
         self.send_button.pack(
             side="right",
-            padx=(5,10),
-            pady=10
+            padx=(0, 15)
         )
 
+        return frame
+
     def get_widget(self):
-        return self.frame
+        return self.widget
+    
+
+    def set_chat_area(self, chat_area):
+        print("ChatArea connected")
+        self.chat_area = chat_area
+
+    def send_message(self):
+        print("Send button clicked")
+        
+        message = self.entry.get().strip()
+        print(message)
+
+        if not message:
+            return
+        
+        self.message_manager.send_user_message(message)
+
+        self.entry.delete(0,"end")
+
+    
+    def set_message_manager(self, message_manager):
+        self.message_manager = message_manager
