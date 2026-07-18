@@ -1,0 +1,6 @@
+GREETING = "greeting"
+TIME = "time"
+DATE = "date"
+IDENTITY = "identity"
+SYSTEM = "system"
+UNKNOWN = "unknown"
