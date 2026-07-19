@@ -8,9 +8,35 @@ class AIEngine:
         print("AI Engine Initialized")
         self.system = SystemCommands()
 
+        self.last_action = None
+
     def generate_response(self, message):
 
         message = message.lower().strip()
+
+        # =========================
+        # CONTEXT MEMORY
+        # =========================
+        repeat_command = [
+            "open it again",
+            "repeat last action",
+            "open previous app",
+            "launch previous app",
+            "do it again"
+        ]
+
+        if message in repeat_command:
+            if not self.last_action:
+                return "No previous action found."
+            
+            if self.last_action["type"] == "app":
+                app = self.last_action["value"]
+                success, response = self.system.open_app(app)
+                return f"Repeating previous action: {response}"
+            
+            if self.last_action["type"] == "website":
+                success, response = self.system.open_website(self.last_action["value"])
+                return f"Repeating previous action: {response}"
 
         # =========================
         # APP LAUNCH HANDLER
@@ -19,6 +45,12 @@ class AIEngine:
 
         if app_name:
             success, response = self.system.open_app(app_name)
+
+            if success:
+                self.last_action = {
+                    "type": "app",
+                    "value": app_name
+                }
             return response
         
         # =========================
@@ -27,6 +59,10 @@ class AIEngine:
         success, response = self.system.open_website(message)
 
         if success:
+            self.last_action = {
+                "type": "website",
+                "value": message
+            }
             return response
         
         # =========================

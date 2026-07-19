@@ -30,12 +30,14 @@ class InputBar:
             pady=15
         )
 
+        self.entry.bind("<Return>", self.on_enter_pressed)
+
         self.voice_button = ctk.CTkButton(
             frame,
             text="🎤",
             width=50,
             height=40,
-            command=self.send_message
+            command=self.voice_input_placeholder
         )
 
         self.voice_button.pack(
@@ -66,6 +68,9 @@ class InputBar:
         print("ChatArea connected")
         self.chat_area = chat_area
 
+    def on_enter_pressed(self, event):
+        self.send_message()
+
     def send_message(self):
         print("Send button clicked")
         
@@ -78,7 +83,19 @@ class InputBar:
         self.message_manager.send_user_message(message)
 
         self.entry.delete(0,"end")
+        self.entry.focus()
 
     
     def set_message_manager(self, message_manager):
         self.message_manager = message_manager
+
+
+    def voice_input_placeholder(self):
+        print("Voice input button clicked")
+
+        if hasattr(self, "message_manager"):
+            self.message_manager.send_system_message(
+                "🎤 Voice input feature will be added in the next version."
+            )
+        
+            

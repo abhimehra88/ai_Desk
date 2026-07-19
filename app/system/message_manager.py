@@ -19,3 +19,9 @@ class MessageManager:
             "🤖 ai_Desk",
             reply
         )
+
+    def send_system_message(self, message):
+        self.chat_area.add_message(
+            "⚙️ System",
+            message
+    )
