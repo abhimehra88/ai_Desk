@@ -16,45 +16,45 @@ To build an AI-powered desktop companion that becomes the central interface betw
 
 ### Phase 1 (MVP)
 
-- AI Chat Interface
-- Voice Assistant
-- Application Control
-- File Management
-- Web Search
-- Utility Tools
-- Modern Desktop UI
+* AI Chat Interface
+* Voice Assistant
+* Application Control
+* File Management
+* Web Search
+* Utility Tools
+* Modern Desktop UI
 
 ### Phase 2
 
-- AI Memory
-- Calendar Integration
-- Email Assistant
-- OCR Support
-- PDF Summarizer
-- YouTube Summarizer
-- Coding Assistant
-- Plugin System
+* AI Memory
+* Calendar Integration
+* Email Assistant
+* OCR Support
+* PDF Summarizer
+* YouTube Summarizer
+* Coding Assistant
+* Plugin System
 
 ### Phase 3
 
-- Local AI Model Support
-- Phone Control
-- Automation Workflows
-- Multi-Agent System
-- Smart Desktop Overlay
+* Local AI Model Support
+* Phone Control
+* Automation Workflows
+* Multi-Agent System
+* Smart Desktop Overlay
 
 ---
 
 ## Tech Stack
 
-- Python
-- CustomTkinter
-- SpeechRecognition
-- pyttsx3
-- requests
-- psutil
-- pyautogui
-- Pillow
+* Python
+* CustomTkinter
+* SpeechRecognition
+* pyttsx3
+* requests
+* psutil
+* pyautogui
+* Pillow
 
 ---
 
