@@ -20,6 +20,22 @@ class AIEngine:
         if app_name:
             success, response = self.system.open_app(app_name)
             return response
+        
+        # =========================
+        # WEBSITE HANDLER
+        # =========================
+        success, response = self.system.open_website(message)
+
+        if success:
+            return response
+        
+        # =========================
+        # FOLDER HANDLER
+        # =========================
+        success, response = self.system.open_folder(message)
+
+        if success:
+            return response
 
         # =========================
         # EXISTING INTENT SYSTEM
@@ -42,7 +58,7 @@ class AIEngine:
         if message in ["who are you", "about yourself"]:
             return "identity"
 
-        if "open" in message:
+        if message.startswith("open "):
             return "system"
 
         return "unknown"

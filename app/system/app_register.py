@@ -6,6 +6,7 @@ APP_REGISTRY = {
     "calculator": ["calc.exe"],
     "paint": ["mspaint.exe"],
     "cmd": ["cmd.exe"],
+    "terminal": ["wt.exe", "cmd.exe"],
 
     # Google Chrome
     "chrome": [
@@ -15,10 +16,13 @@ APP_REGISTRY = {
     ],
 
     # Visual Studio Code
+    # Visual Studio Code
     "vscode": [
         r"D:\Microsoft VS Code\Code.exe",
         r"D:\Microsoft VS Code\bin\code",
         r"D:\Microsoft VS Code\bin\code.cmd",
+        r"C:\Program Files\Microsoft VS Code\Code.exe",
+        r"C:\Program Files (x86)\Microsoft VS Code\Code.exe",
         "code",
         "code.cmd",
         "code.exe"
@@ -38,9 +42,20 @@ APP_ALIASES = {
     "visual studio code": "vscode",
     "code editor": "vscode",
 
-    # Existing apps
+    # Notepad
     "notepad": "notepad",
+
+    # Calculator
     "calculator": "calculator",
+    "calc": "calculator",
+
+    # Paint
     "paint": "paint",
-    "cmd": "cmd"
+
+    # Terminal
+    "cmd": "cmd",
+    "terminal": "cmd",
+    "terminal": "terminal",
+    "windows terminal": "terminal",
+    "command prompt": "cmd",
 }
