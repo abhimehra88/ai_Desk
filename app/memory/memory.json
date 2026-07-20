@@ -1,8 +1,7 @@
 {
     "user_name": null,
-    "last_action": "open youtuber",
+    "last_action": "open chrome browser",
     "recent_commands": [
-        "open notepad",
         "open chrome",
         "open github",
         "open chrome",
@@ -11,6 +10,7 @@
         "open your tool.",
         "open your door.",
         "open your table",
-        "open youtuber"
+        "open youtuber",
+        "open chrome browser"
     ]
 }
