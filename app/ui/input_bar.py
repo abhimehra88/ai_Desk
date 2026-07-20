@@ -1,10 +1,12 @@
 import customtkinter as ctk
+from app.voice.voice_input import VoiceInput
 
 
 class InputBar:
 
     def __init__(self, parent):
         self.parent = parent
+        self.voice_input = VoiceInput()
         self.widget = self.create()
 
     def create(self):
@@ -37,7 +39,7 @@ class InputBar:
             text="🎤",
             width=50,
             height=40,
-            command=self.voice_input_placeholder
+            command=self.start_voice_input
         )
 
         self.voice_button.pack(
@@ -90,12 +92,48 @@ class InputBar:
         self.message_manager = message_manager
 
 
-    def voice_input_placeholder(self):
-        print("Voice input button clicked")
+    def start_voice_input(self):
 
-        if hasattr(self, "message_manager"):
+        print("🎤 Voice button clicked")
+
+        if not hasattr(self, "message_manager"):
+            return
+        
+        try:
+            
+            # Show listening status
             self.message_manager.send_system_message(
-                "🎤 Voice input feature will be added in the next version."
+                "🎤 Listening... Speak now."
             )
+
+            # Covert speech to text
+            text = self.voice_input.listen()
+
+            # Normalize text
+            text = text.lower().strip()
+
+            print(f"VOICE DETECTED: {text}")
+
+            if not text:
+                self.message_manager.send_system_message(
+                    "⚠️ No speech detected."
+                )
+                return 
+            
+            # Put text into input box
+            self.entry.delete(0, "end")
+            self.entry.insert(0, text)
+
+            # Auto send
+            self.send_message()
+
+        except Exception as error:
+            print(f"VOICE ERROR: {error}")
+
+            self.message_manager.send_system_message(
+                f"❌ Voice error: {str(error)}"
+            )
+
+
         
             

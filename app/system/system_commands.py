@@ -55,6 +55,34 @@ class SystemCommands:
     def extract_app_name(text):
         text = text.lower()
 
+        # Whisper / speech recognition correction
+        corrections = {
+
+            # Youtube variation
+            "your tool": "youtube",
+            "you tool": "youtube",
+            "you too": "youtube",
+            "u tube": "youtube",
+            "youtuber": "youtube",
+            "your door": "youtube",
+            "your table": "youtube",
+            "your tube": "youtube",
+
+            # VS Code variation
+            "vs code": "vscode",
+            "visual studio": "vscode",
+            "code editor": "vscode",
+
+            # Chrome variation
+            "chrome browser": "chrome",
+            "google browers": "chrome"
+        }
+
+        # Apply corrections
+        for wrong, correct in corrections.items():
+            text = text.replace(wrong, correct)
+
+        # Match aliases
         for alias, app in APP_ALIASES.items():
             if alias in text:
                 return app
