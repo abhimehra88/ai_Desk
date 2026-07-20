@@ -1,6 +1,8 @@
 from datetime import datetime
 from app.system.system_commands import SystemCommands
 from app.memory.memory_manager import MemoryManager 
+from app.ai.llm_client import LLMClient
+from app.ai.local_knowledge import LOCAL_KNOWLEDGE
 
 
 class AIEngine:
@@ -10,6 +12,7 @@ class AIEngine:
 
         self.system = SystemCommands()
         self.memory = MemoryManager()
+        self.llm = LLMClient()
 
 
     def generate_response(self, message):
@@ -150,4 +153,10 @@ class AIEngine:
         return "I am ai_Desk, your intelligent desktop assistant."
 
     def handle_fallback(self, message):
-        return f"You said: {message}"
+
+        normalized = message.lower().strip()
+
+        if normalized in LOCAL_KNOWLEDGE:
+            return LOCAL_KNOWLEDGE[normalized]
+        
+        return self.llm.generate(message)
