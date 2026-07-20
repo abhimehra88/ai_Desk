@@ -12,16 +12,26 @@ class InputBar:
     def create(self):
         frame = ctk.CTkFrame(
             self.parent,
-            height=70,
-            corner_radius=12
+            height=78,
+            corner_radius=28,
+            fg_color="#111827",
+            border_width=1,
+            border_color="#334155"
         )
 
         frame.pack_propagate(False)
 
         self.entry = ctk.CTkEntry(
             frame,
-            placeholder_text="Type your message...",
-            height=40
+            placeholder_text="Ask anything, control your PC, or use voice…",
+            height=50,
+            corner_radius=20,
+            fg_color="#0B1220",
+            border_width=1,
+            border_color="#334155",
+            text_color="#F8FAFC",
+            placeholder_text_color="#64748B",
+            font=ctk.CTkFont(size=15)
         )
 
         self.entry.pack(
@@ -37,8 +47,12 @@ class InputBar:
         self.voice_button = ctk.CTkButton(
             frame,
             text="🎤",
-            width=50,
-            height=40,
+            width=54,
+            height=50,
+            corner_radius=18,
+            fg_color="#1D4ED8",
+            hover_color="#2563EB",
+            font=ctk.CTkFont(size=18, weight="bold"),
             command=self.start_voice_input
         )
 
@@ -49,11 +63,15 @@ class InputBar:
 
         self.send_button = ctk.CTkButton(
             frame,
-            text="Send",
-            command=self.send_message,
-            width=80,
-            height=40
-        )
+            text="➤",
+            width=54,
+            height=50,
+            corner_radius=18,
+            fg_color="#2563EB",
+            hover_color="#1D4ED8",
+            font=ctk.CTkFont(size=20, weight="bold"),
+            command=self.send_message
+        )       
 
         self.send_button.pack(
             side="right",

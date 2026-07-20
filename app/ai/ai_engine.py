@@ -160,3 +160,6 @@ class AIEngine:
             return LOCAL_KNOWLEDGE[normalized]
         
         return self.llm.generate(message)
+    
+    def get_recent_commands(self):
+        return self.memory.get_recent_commands()

@@ -11,6 +11,13 @@ class MainWindow:
     def __init__(self, root):
         self.root = root
 
+        self.screen_width = self.root.winfo_screenwidth()
+        self.screen_height = self.root.winfo_screenheight()
+        self.is_mobile = self.screen_width <700
+
+        print(f"Screen: {self.screen_width}x{self.screen_height}")
+        print(f"Mobile mode: {self.is_mobile}")
+
         self.build_ui()
 
     def build_ui(self):
