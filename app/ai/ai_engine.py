@@ -1,56 +1,34 @@
 from datetime import datetime
 from app.system.system_commands import SystemCommands
+from app.memory.memory_manager import MemoryManager 
 
 
 class AIEngine:
 
     def __init__(self):
         print("AI Engine Initialized")
-        self.system = SystemCommands()
 
-        self.last_action = None
+        self.system = SystemCommands()
+        self.memory = MemoryManager()
+
 
     def generate_response(self, message):
 
         message = message.lower().strip()
+        self.memory.add_recent_command(message)
 
-        # =========================
-        # CONTEXT MEMORY
-        # =========================
-        repeat_command = [
-            "open it again",
-            "repeat last action",
-            "open previous app",
-            "launch previous app",
-            "do it again"
-        ]
-
-        if message in repeat_command:
-            if not self.last_action:
-                return "No previous action found."
-            
-            if self.last_action["type"] == "app":
-                app = self.last_action["value"]
-                success, response = self.system.open_app(app)
-                return f"Repeating previous action: {response}"
-            
-            if self.last_action["type"] == "website":
-                success, response = self.system.open_website(self.last_action["value"])
-                return f"Repeating previous action: {response}"
 
         # =========================
         # APP LAUNCH HANDLER
         # =========================
-        app_name = SystemCommands.extract_app_name(message)
+        app_name = self.system.extract_app_name(message)
 
         if app_name:
             success, response = self.system.open_app(app_name)
 
             if success:
-                self.last_action = {
-                    "type": "app",
-                    "value": app_name
-                }
+                self.memory.set_last_action (message)
+
             return response
         
         # =========================
@@ -59,10 +37,8 @@ class AIEngine:
         success, response = self.system.open_website(message)
 
         if success:
-            self.last_action = {
-                "type": "website",
-                "value": message
-            }
+            self.memory.set_last_action(message)
+
             return response
         
         # =========================
@@ -93,6 +69,14 @@ class AIEngine:
 
         if message in ["who are you", "about yourself"]:
             return "identity"
+        
+        if message in [
+            "open it again",
+            "repeat last action",
+            "do it again",
+            "repeat previous command"
+        ]:
+            return "repeat"
 
         if message.startswith("open "):
             return "system"
@@ -114,10 +98,45 @@ class AIEngine:
             return self.handle_identity()
 
         if intent == "system":
-            return self.system.execute(message)
+            self.memory.set_last_action(message)
+            
+            app_name = self.system.extract_app_name(message)
 
+            if app_name:
+                success, response = self.system.open_app(app_name)
+                return response
+            
+            return "I couldn't understand which application to open."
+        
+        if intent == "repeat":
+
+            last_action = self.memory.get_last_action()
+
+            if last_action:
+               
+               # Try app first
+               app_name =  self.system.extract_app_name(last_action)
+
+               if app_name:
+                    success, response = self.system.open_app(app_name)
+
+                    if success:
+                        return f"Repeating previous action: {response}"
+                    
+                    
+                    # Try website 
+                    success, response = self.system.open_website(last_action)
+
+                    if success:
+                        return f"Repeating previous action: {response}"
+            
+                    return "I couldn't repeat the previous action."
+               
+               return "I don't have any previous action to repeat."
+            
         return self.handle_fallback(message)
 
+        
     def handle_greetings(self):
         return "Hello! How can I help you today?"
 
