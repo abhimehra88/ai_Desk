@@ -1,3 +1,31 @@
+## 🚀 Current Release: v1.3 — AI Brain Online
+
+### Working Features
+
+* 🎤 Real voice input (Whisper)
+* 🤖 Conversational AI (Gemini SDK)
+* 🖥️ Windows application automation
+* 🌐 Website launcher
+* 📁 Folder automation
+* 🧠 Persistent memory
+* 📜 Command history sidebar
+* 🔁 Repeat previous action
+
+### Example Commands
+
+* `open calculator`
+* `open vscode`
+* `open github`
+* `open downloads`
+* `what is java`
+* `explain recursion in simple words`
+* `open it again`
+
+### Status
+
+**Stable demo-ready AI desktop assistant**
+
+
 # ai_Desk
 
 > AI-powered Desktop Assistant and Personal Workspace
