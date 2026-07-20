@@ -1,16 +1,16 @@
 {
     "user_name": null,
-    "last_action": "open calculator",
+    "last_action": "open chrome",
     "recent_commands": [
         "open it again",
-        "open it again",
-        "open it again",
-        "open it again",
-        "open it again",
-        "open it again",
         "open calculator",
         "open it again",
         "open calculator",
-        "open it again"
+        "open it again",
+        "open notepad",
+        "open notepad",
+        "open chrome",
+        "open github",
+        "open chrome"
     ]
 }
