@@ -1,119 +1,231 @@
-## 🚀 Current Release: v1.3 — AI Brain Online
+# 🧠 ai_Desk
 
-### Working Features
+**AI-powered Desktop Assistant with Voice, Automation, Memory, and Gemini Intelligence**
 
-* 🎤 Real voice input (Whisper)
-* 🤖 Conversational AI (Gemini SDK)
-* 🖥️ Windows application automation
-* 🌐 Website launcher
-* 📁 Folder automation
-* 🧠 Persistent memory
-* 📜 Command history sidebar
-* 🔁 Repeat previous action
+ai_Desk is a modern desktop AI assistant built with **Python + CustomTkinter**. It combines **real voice input, Windows automation, conversational AI, persistent memory, and a premium desktop interface** into a single modular application.
 
-### Example Commands
-
-* `open calculator`
-* `open vscode`
-* `open github`
-* `open downloads`
-* `what is java`
-* `explain recursion in simple words`
-* `open it again`
-
-### Status
-
-**Stable demo-ready AI desktop assistant**
-
-
-# ai_Desk
-
-> AI-powered Desktop Assistant and Personal Workspace
-
-ai_Desk is an intelligent desktop companion built with Python. It provides a modern desktop interface where users can interact using natural language, automate tasks, manage files, launch applications, and enhance productivity.
+![Version](https://img.shields.io/badge/version-v1.3-blue)
+![Python](https://img.shields.io/badge/python-3.14+-green)
+![Platform](https://img.shields.io/badge/platform-Windows-0078D4)
+![Status](https://img.shields.io/badge/status-stable-success)
 
 ---
 
-## Vision
+## 🚀 Current Release — v1.3 “AI Brain Online”
 
-To build an AI-powered desktop companion that becomes the central interface between the user and the computer.
+### ✨ Working Features
 
----
-
-## Features
-
-### Phase 1 (MVP)
-
-* AI Chat Interface
-* Voice Assistant
-* Application Control
-* File Management
-* Web Search
-* Utility Tools
-* Modern Desktop UI
-
-### Phase 2
-
-* AI Memory
-* Calendar Integration
-* Email Assistant
-* OCR Support
-* PDF Summarizer
-* YouTube Summarizer
-* Coding Assistant
-* Plugin System
-
-### Phase 3
-
-* Local AI Model Support
-* Phone Control
-* Automation Workflows
-* Multi-Agent System
-* Smart Desktop Overlay
+* 🎤 **Real Whisper voice input**
+* 🤖 **Official Google Gemini SDK integration**
+* 🖥️ **Windows application automation**
+* 🌐 **Website launcher**
+* 📁 **Folder automation**
+* 🧠 **Persistent memory across sessions**
+* 📜 **Command history sidebar**
+* 🔁 **Repeat previous action**
+* 🎨 **Premium responsive desktop UI**
+* ⚡ **Multi-model failover architecture**
 
 ---
 
-## Tech Stack
+## 🖼️ Interface
 
-* Python
-* CustomTkinter
-* SpeechRecognition
-* pyttsx3
-* requests
-* psutil
-* pyautogui
-* Pillow
+The application uses a **dark glassmorphism-inspired UI** with:
+
+* Premium header
+* AI status indicator
+* Scrollable conversation area
+* Touch-friendly input bar
+* Voice activation button
+* History replay panel
 
 ---
 
-## Project Structure
+## 🎯 Example Commands
+
+### AI Questions
+
+```text
+what is java
+explain recursion in simple words
+what is binary search
+```
+
+### Desktop Automation
+
+```text
+open calculator
+open vscode
+open notepad
+open terminal
+```
+
+### Web & Folders
+
+```text
+open github
+open youtube
+open downloads
+open desktop
+```
+
+### Memory
+
+```text
+open it again
+repeat last action
+```
+
+---
+
+## 🏗️ Architecture
 
 ```text
 ai_Desk/
 │
 ├── app/
-├── assets/
-├── docs/
-├── tests/
+│   ├── ai/           # Gemini + AI routing
+│   ├── voice/        # Whisper voice input
+│   ├── memory/       # Persistent memory
+│   ├── system/       # Windows automation
+│   ├── ui/           # CustomTkinter interface
+│   └── core/         # Application bootstrap
 │
 ├── main.py
 ├── requirements.txt
-├── README.md
-└── LICENSE
+└── README.md
 ```
 
 ---
 
-## Current Status
+## 🧠 AI Pipeline
 
-🚧 Project is under active development.
+```text
+Voice
+  ↓
+Whisper
+  ↓
+Message Manager
+  ↓
+AI Engine
+  ↓
+Local Memory
+  ↓
+Gemini SDK
+  ↓
+Response + Action
+```
 
-Current Version:
-
-v0.1.0 (Foundation)
+This design allows ai_Desk to support **voice conversation, desktop control, contextual memory, and cloud AI reasoning**.
 
 ---
 
-## License
+## ⚙️ Installation
 
-This project is licensed under the MIT License.
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/abhimehra88/ai_Desk.git
+cd ai_Desk
+```
+
+### 2. Create virtual environment
+
+```bash
+python -m venv .venv
+```
+
+### 3. Activate
+
+**Windows PowerShell**
+
+```powershell
+.\\.venv\\Scripts\\Activate.ps1
+```
+
+### 4. Install dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+### 5. Add Gemini API key
+
+Create a `.env` file:
+
+```env
+GEMINI_API_KEY=your_api_key_here
+```
+
+### 6. Run
+
+```bash
+python main.py
+```
+
+---
+
+## 🧪 Technology Stack
+
+| Layer           | Technology             |
+| --------------- | ---------------------- |
+| UI              | CustomTkinter          |
+| Voice STT       | Faster-Whisper         |
+| AI              | Google Gemini SDK      |
+| Automation      | Python + Windows APIs  |
+| Memory          | JSON-based persistence |
+| Version Control | Git & GitHub           |
+
+---
+
+## 📌 Technical Highlights
+
+* **Modular architecture**
+* **Separation of UI and business logic**
+* **Conversation memory**
+* **Voice-to-action workflow**
+* **Graceful AI error handling**
+* **Responsive layout foundation**
+* **Public release tagging workflow**
+
+---
+
+## 🔮 Roadmap
+
+### v1.4 — Reliability & Research
+
+* Web search integration
+* Source-aware answers
+* Better retry strategy
+* Automated testing
+* Crash-safe logging
+
+### v1.5 — IRIS Foundation
+
+* Wake word detection
+* Background tray service
+* Multi-agent workflows
+* Local LLM support
+* Cross-platform packaging
+
+---
+
+## 👨‍💻 Author
+
+**Abhi Mehra**
+
+* GitHub: https://github.com/abhimehra88
+
+---
+
+## 📄 License
+
+This project is licensed under the **MIT License**.
+
+---
+
+## ⭐ Why this project matters
+
+ai_Desk is not just a chat application. It is a **voice-enabled AI operating layer** that combines **automation, memory, and conversational intelligence** into a real desktop workflow system.
+
+**Current Status:** ✅ Stable demo-ready release

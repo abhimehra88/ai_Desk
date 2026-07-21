@@ -3,6 +3,8 @@ from app.system.system_commands import SystemCommands
 from app.memory.memory_manager import MemoryManager 
 from app.ai.llm_client import LLMClient
 from app.ai.local_knowledge import LOCAL_KNOWLEDGE
+from app.research.web_search import WebSearch
+from app.research.summarizer import SearchSummarizer
 
 
 class AIEngine:
@@ -58,6 +60,43 @@ class AIEngine:
         intent = self.detect_intent(message)
 
         return self.handle_intent(intent, message)
+    
+    def needs_live_search(self, message):
+
+        # Ignore internal system prompts
+        if message.startswith("User searched for:"):
+            return False
+        
+        if message.startswith("Live web search results:"):
+            return False
+        
+        if "Using these live web results" in message:
+            return False
+
+        keywords = [
+            "latest",
+            "current",
+            "today",
+            "yesterday",
+            "news",
+            "live",
+            "breaking",
+            "score",
+            "result",
+            "winner",
+            "match",
+            "weather",
+            "stock",
+            "price"
+            "fifa",
+            "world cup",
+            "final",
+            "won"
+        ]
+
+        message = message.lower()
+
+        return any(keyword in message for keyword in keywords)
 
     def detect_intent(self, message):
 
@@ -154,12 +193,30 @@ class AIEngine:
 
     def handle_fallback(self, message):
 
-        normalized = message.lower().strip()
+        # =========================
+        # LIVE WEB SEARCH
+        # =========================
+        if self.needs_live_search(message):
 
-        if normalized in LOCAL_KNOWLEDGE:
-            return LOCAL_KNOWLEDGE[normalized]
+            print(f"[WEB] Searching: {message}")
+
+            search_data = WebSearch.search(message)
+
+            if search_data["success"] and search_data["results"]:
+                context = SearchSummarizer.build_context(search_data)
+
+                if context:
+                    return self.llm.generate(context)
+                
+                return "I found live web results but could not summarize them."
+            
+            return "I could not fetch live web results right now."
         
+        # =========================
+        # NORMAL AI
+        # =========================
         return self.llm.generate(message)
+
     
     def get_recent_commands(self):
         return self.memory.get_recent_commands()
