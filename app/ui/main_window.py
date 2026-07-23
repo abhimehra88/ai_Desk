@@ -108,11 +108,13 @@ class MainWindow:
 
     def on_history_command_click(self, command):
 
-        # Put command into input box
-        self.input_bar.entry.delete(0, "end")
-        self.input_bar.entry.insert(0, command)
+        # Clear textbox
+        self.input_bar.entry.delete("1.0", "end")
 
-        # Auto send
-        self.input_bar.send_message()
+        # Insert selected comand
+        self.input_bar.entry.insert("1.0", command)
+
+        # Foocus textbox
+        self.input_bar.entry.focus()
         
 

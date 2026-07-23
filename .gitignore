@@ -18,3 +18,7 @@ __pycache__/
 # OS Files
 .DS_Store
 Thumbs.db
+
+
+# Runtime memory
+app/memory/memory.json
