@@ -40,7 +40,13 @@ class ResponseFormatter:
             cleaned.append(line)
             prev_empty = is_empty
 
-        text = "\n".join(cleaned).strip()
+        # Preserve line breaks while cleaning spaces
+        cleaned_lines =[]
+
+        for line in text.splitlines():
+            cleaned_lines.append(" ".join(line.split()))
+
+        text = "\n".join(cleaned_lines)
 
         # Default safety limit
         max_length = 2200

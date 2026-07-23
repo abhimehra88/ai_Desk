@@ -107,6 +107,9 @@ class ChatArea:
         icon = "👤" if is_user else ("⚙️" if is_system else "🤖")
         print(f">>> {icon} {display_name}: {message}")
 
+        # IMPORTANT: return the label so we can update it later
+        return message_label
+    
     def clear_chat(self):
         for widget in self.chat_box.winfo_children():
             widget.destroy()
